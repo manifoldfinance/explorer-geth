@@ -34,6 +34,7 @@ var Modules = map[string]string{
 	"txpool":     TxpoolJs,
 	"les":        LESJs,
 	"vflux":      VfluxJs,
+	"trace":      TraceJs,
 }
 
 const ChequebookJs = `
@@ -928,5 +929,26 @@ web3._extend({
 			getter: 'vflux_requestStats'
 		}),
 	]
+});
+`
+
+const TraceJs = `
+web3._extend({
+	property: 'trace',
+	methods: [
+		new web3._extend.Method({
+			name: 'block',
+			call: 'trace_block',
+			params: 2,
+			inputFormatter: [null, null]
+		}),
+		new web3._extend.Method({
+			name: 'transaction',
+			call: 'trace_transaction',
+			params: 2,
+			inputFormatter: [null, null]
+		}),
+	],
+	properties: []
 });
 `
